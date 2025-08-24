@@ -1,0 +1,111 @@
+basic: rightshift >>k  means divided by 2^k
+	   leftshift <<k   means multiply by 2^k
+	   oddnumber always have last bit set therefore check ( (number & 1) == 1) 
+
+
+1. Swap two numbers -  
+						a=a^b
+						b=a^b    ((a^b)^b == a)
+						a=a^b	 ((a^b)^(a) == b)
+
+		(note: (1<<n) =  0001000   1 at nth position)
+2. Check if ith  bit is set or not - (n,i)
+							if( n & (1<<i)==0 ) means not set else set
+						
+						
+3. set ith Bit -  ( n | (n<<1))
+
+4. clear ith Bit - (n & ~(n<<1))
+
+5. Toggle ith Bit - (n ^ (n<<1))
+
+6.Remove the last set Bit -  (n & (n-1))   because in n-1 all the bits after lastset bit get reversed 
+
+7. count the number of set bits  - ex: n=84
+								while(n!=0)
+									if((n&1)==1) count++     means number is odd therefore a bit
+									n=n>>1;              (n=n/2)
+								or
+								
+								while(n!=0)
+									n=n&(n-1)
+									count++;
+								
+
+8. Check if a number is power of 2 or not  -  (n&(n-1) ==0 ) then power of 2
+
+9. Minimum Bit Flips to Convert Number - start=10 , goal=7
+								ans=start^goal;
+								count number of setbits(ans)
+								
+								or 
+								
+								while(start!=0 || goal!=0){
+									if((start&1)!=(goal&1))count++;  ( checking last bit of both using odd number concept and then right shift the number) 
+									start=start>>1;
+									goal=goal>>1;
+								}
+								
+10. get single number , every number appears twice  in array except one ex[4,1,2,1,2]
+								for(int i=0;i<arr.length;i++){
+											ans^=arr[i];
+								}
+								
+11. Power Set | Bit Manipulation
+							//number of subset will be 2^n
+							int n=nums.length;
+							ArrayList<ArrayList<Integer>> arr=new ArrayList<>();
+							
+							for(int i=0 ; i<(1<<n) ; i++){
+								ArrayList<Integer> ans=new ArrayList<>();
+								for(int k=0;k<n;k++){
+									// check if kth bit is set or not 
+									if((i & (1<<k))!=0){
+										ans.add(nums[k]);
+									}
+								}
+								arr.add(ans);
+							}
+
+12. get single number , every number appears thrice  in array except one ex[5,5,5,6,4,4,4]
+								int ans=0;
+								for(int i=0;i<32;i++){
+									int count=0;
+									for(int j=0;j<arr.length;j++){
+										// check if ith bit is set 
+										if((arr[j] & (1<<i))!=0) count++;
+									}
+									if(count%3!=0){
+										// means ans bit will be set
+										ans+=(1<<i);
+									}
+								}
+					OR
+								sort(arr) 
+									for(int i=1;i<arr.length;i+=3){
+											if(arr[i]!=arr[i-1]) ans=arr[i-1];
+										}
+									if(ans==-1) ans=arr[arr.length-1]
+					OR
+								int one=0,two=0;
+								for(int i=0;i<arr.length;i++){
+									//if it is in one so not in two  (if number is already in two then one is reset using & (~two))
+									one=(one^arr[i])&(~two);
+									//if it is in two so that it should not in one  ( ^ is use to add number in two)
+									two=(two^arr[i])&(~one);
+								}
+								System.out.println(one);
+								
+12. get 2 single number , every number appears twice  in array except two ex[2,5,5,3,4,4]
+								  int xor=0;
+								for(int i:arr) xor^=i;
+								
+								//check the first bit of this xor and partition the numbers in two sets basis on this bit
+								int basisofpartition=(xor&(xor-1))^xor;         (xor&(xor-1) will clear the first set bit and then ^xor will clear all the bits except the first bit )
+								//now we can partition the array in two parts and both parts will have 1 unique number xor will give them
+								
+								for(int i=0;i<arr.length;i++){
+									if((arr[i]&basisofpartition)!=0) b1^=arr[i];
+									else b2^=arr[i];
+								}
+	
