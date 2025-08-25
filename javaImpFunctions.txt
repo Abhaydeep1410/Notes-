@@ -1,0 +1,18 @@
+JAVA IMP FUNCTIONS ::->
+	->  s.trim() removes the trailing spaces from a string
+	-> s.toCharArray() converts the string to character array
+	-> map.getOrDefault(number,0)+1   for adding frequency in map
+	-> String.join(" ",s)  
+	-> s.split(" +") returns a string array and split the string with one or more spaces
+	-> s.startsWith("abc") return true or false
+	-> s.indexOf("abc")   return index of string inside other string 
+	-> Map.Entry<Character,Integer> is like a pair in c++
+	-> PriorityQueue methods
+						--.isEmpty()
+						-- .peek()
+						-- .poll()
+						-- .offer()
+	-> Character.isDigit('1') return true or false if numeric
+	-> isNumeric("string") return true or false
+	-> inititalizing arraylist in java ArrayList<Integer> arr= new ArrayList<>(Arrays.asList(2,3,1,6,5));
+	-> arrayList dont have lenght because it is dynamic therefore it has size arr.size();
