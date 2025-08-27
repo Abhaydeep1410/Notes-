@@ -1,0 +1,34 @@
+Union-Find (DSU)
+			class DSU{
+				int [] rank;
+				int [] parent;
+				int findParent(int number){
+					if(number==parent[number]){
+						return number;
+					}
+					return parent[number]=findParent(parent[number]);
+				}
+				
+				void UnionFind(int x, int y){
+					int parent_X=findParent(x);
+					int parent_Y=findParent(y);
+					if(parent_X==parent_Y) return ;
+					
+					if(rank[parent_X]<rank[parent_Y]){
+						parent[parent_X]=parent_Y;
+					}else if(rank[parent_X]>rank[parent_Y]){
+						parent[parent_Y]=parent[parent_X];
+					}else{
+						parent[parent_Y]=parent[parent_X];
+						rank[parent_X]++;
+					}
+				}	
+				public DSU(int V){
+					parent=new int[V];
+					rank=new int[V];
+					for(int i=0;i<V;i++){
+						parent[i]=i;
+						rank[i]=1;
+					}
+				}
+			}

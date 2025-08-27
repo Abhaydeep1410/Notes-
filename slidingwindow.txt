@@ -1,0 +1,11 @@
+sliding window patterns
+
+1. maxlen of subarray where <condition>
+											while(r<arr.length){
+												sum+=arr[r];
+												if(sum>k){
+													sum-=arr[l];l++;
+												}
+												maxlen=Math.max(maxlen,r-l+1);
+												r++;
+											}

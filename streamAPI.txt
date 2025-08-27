@@ -1,0 +1,112 @@
+
+Basic Level (1-15)
+
+1. Create a stream from a list
+   list.stream();
+
+2. Convert a stream back to a list
+   stream.collect(Collectors.toList());
+
+3. Count elements in a stream
+   stream.count();
+
+4. Filter even numbers
+   list.stream().filter(x -> x % 2 == 0).toList();
+
+5. Convert strings to uppercase
+   list.stream().map(String::toUpperCase).toList();
+
+6. Sort a list
+   list.stream().sorted().toList();
+
+7. Limit to first 5 elements
+   list.stream().limit(5).toList();
+
+8. Skip first 3 elements
+   list.stream().skip(3).toList();
+
+9. Find the first element
+   list.stream().findFirst().orElse(null);
+
+10. Check if all match a condition
+   list.stream().allMatch(x -> x > 0);
+
+11. Check if any match a condition
+   list.stream().anyMatch(x -> x > 0);
+
+12. Remove duplicates
+   list.stream().distinct().toList();
+
+13. Collect into a Set
+   list.stream().collect(Collectors.toSet());
+
+14. Generate infinite random numbers
+   Stream.generate(Math::random);
+
+15. Create stream from array
+   Arrays.stream(array);
+
+Intermediate Level (16-35)
+
+16. Sum of list
+   list.stream().mapToInt(Integer::intValue).sum();
+
+17. Max and min values
+   list.stream().max(...); list.stream().min(...);
+
+18. Average of numbers
+   list.stream().mapToInt(Integer::intValue).average();
+
+19. Concatenate multiple lists
+   Stream.concat(list1.stream(), list2.stream());
+
+20. Group into even and odd
+   list.stream().collect(Collectors.partitioningBy(x -> x % 2 == 0));
+
+21. Group employees by department
+   employees.stream().collect(Collectors.groupingBy(Employee::getDepartment));
+
+22. Find second highest number
+   list.stream().sorted(Comparator.reverseOrder()).skip(1).findFirst();
+
+23. Partition >10 and <10
+   list.stream().collect(Collectors.partitioningBy(x -> x > 10));
+
+24. Count occurrences of each word
+   list.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+25. Remove nulls
+   list.stream().filter(Objects::nonNull).toList();
+
+26. Join strings
+   list.stream().collect(Collectors.joining(" "));
+
+27. Flatten list of lists
+   lists.stream().flatMap(List::stream).toList();
+
+28. Find duplicate elements
+   Set seen = new HashSet<>();
+   list.stream().filter(x -> !seen.add(x)).distinct().toList();
+
+29. Top 3 highest numbers
+   list.stream().sorted(Comparator.reverseOrder()).limit(3).toList();
+
+30. Convert to map (string-length)
+   list.stream().collect(Collectors.toMap(w -> w, String::length));
+
+31. Find longest word
+   list.stream().max(Comparator.comparingInt(String::length));
+
+32. Get distinct characters
+   list.stream().flatMap(w -> Arrays.stream(w.split(""))).distinct().toList();
+
+33. Merge two maps
+   Stream.concat(map1.entrySet().stream(), map2.entrySet().stream())
+         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, Integer::sum));
+
+34. Extract sublist with condition
+   list.stream().filter(x -> x > 10).toList();
+
+35. Shuffle list
+   List<Integer> shuffled = new ArrayList<>(list);
+   Collections.shuffle(shuffled);
